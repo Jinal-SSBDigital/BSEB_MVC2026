@@ -1,49 +1,176 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BSEB_MVC</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/BSEB_MVC.styles.css" asp-append-version="true" />
+    <title>BSEB - Admin Dashboard</title>
+
+    @RenderSection("Head", required: false)
+
+    <link href="~/css/app.min.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/components.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/bundles/datatables/datatables.min.css" />
+    <link rel="stylesheet" href="~/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/img/favicon_v1.png" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BSEB_MVC</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <div class="loader"></div>
+    <div id="app">
+        <div class="main-wrapper main-wrapper-1">
+            <div class="navbar-bg"></div>
+            <nav class="navbar navbar-expand-lg main-navbar sticky">
+                <div class="form-inline mr-auto">
+                    <ul class="navbar-nav mr-3">
+                        <li>
+                            <a href="#" data-toggle="sidebar" class="nav-link nav-link-lg collapse-btn">
+                                <i data-feather="align-justify"></i>
+                            </a>
                         </li>
                     </ul>
                 </div>
+
+                <div class="d-flex justify-content-end align-items-center px-4 py-2">
+                    <div class="text-right text-body mr-3">
+                        <strong>
+                            @(HttpContextAccessor.HttpContext?.Session.GetString("CollegeName") ?? "No College Name")
+                        </strong>
+                    </div>
+                    <a asp-action="Index" asp-controller="Login" class="btn btn-outline-danger font-weight-bold text-decoration-none">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
+            </nav>
+
+            <div class="main-sidebar sidebar-style-2">
+                <aside id="sidebar-wrapper">
+                    <div class="sidebar-brand">
+                        <a asp-action="Index" asp-controller="Dashboard">
+                            <img alt="image" src="~/img/bsebimage.jpg" class="header-logo" />
+                        </a>
+                    </div>
+
+                    <ul class="sidebar-menu">
+                        <li class="menu-header">Student Registration Management</li>
+
+                        <li class="dropdown @(ViewBag.ActiveModule == "dashboard" ? "active" : "")">
+                            <a asp-action="Index" asp-controller="Dashboard" class="nav-link"><i data-feather="command"></i><span>Dashboard</span></a>
+                        </li>
+
+                        @{
+                             var activeModule = HttpContextAccessor.HttpContext?.Session.GetString("ActiveModule") ?? "registration";
+                            //var activeModule = HttpContextAccessor.HttpContext?.Session.GetString("ActiveModule") ?? "dashboard";
+                            var isAdmin = (HttpContextAccessor.HttpContext?.Session.GetString("CollegeName")?.ToLower() == "Admin");
+                        }
+
+                        @if (activeModule == "registration")
+                        {
+                            <li class="dropdown">
+                                <a asp-action="DownloadRegForm" asp-controller="Student" class="nav-link"><i data-feather="monitor"></i><span>Download Registration Form</span></a>
+                            </li>
+                            <li class="dropdown">
+                                <a asp-action="PayStudentFee" asp-controller="Payment" class="nav-link"><i data-feather="file-text"></i><span>Make Payment</span></a>
+                            </li>
+                            <li class="dropdown">
+                                <a asp-action="RegisterRegular" asp-controller="Student" class="nav-link"><i data-feather="user-check"></i><span>Register Regular Students</span></a>
+                            </li>
+                            <li class="dropdown">
+                                <a asp-action="RegisterPrivate" asp-controller="Student" class="nav-link"><i data-feather="user"></i><span>Register Private Students</span></a>
+                            </li>
+                            @if (isAdmin)
+                            {
+                                <li>
+                                    <a asp-action="Index" asp-controller="CollegeMaster" class="nav-link"><i data-feather="home"></i><span>College Master</span></a>
+                                </li>
+                                <li>
+                                    <a asp-action="ExamChallanRecall" asp-controller="Challan" class="nav-link"><i data-feather="repeat"></i><span>Exam Challan Recall</span></a>
+                                </li>
+                            }
+                            <li>
+                                <a asp-action="DownloadDummyRegCard" asp-controller="Student" class="nav-link"><i data-feather="file-text"></i><span>Dummy Registration Card</span></a>
+                            </li>
+                        }
+                        else if (activeModule == "preexam")
+                        {
+                            <li>
+                                <a asp-action="DownloadExamForm" asp-controller="Exam" class="nav-link"><i class="fas fa-file-alt"></i><span>Student Exam Application Form</span></a>
+                            </li>
+                            <li>
+                                <a asp-action="PayExamFee" asp-controller="Payment" class="nav-link"><i class="fas fa-rupee-sign"></i><span>Make Exam Fee Payment</span></a>
+                            </li>
+                            <li>
+                                <a asp-action="ExamForm" asp-controller="Exam" class="nav-link"><i class="fas fa-pen"></i><span>Exam Form</span></a>
+                            </li>
+                            <li>
+                                <a asp-action="DownloadAdmitCard" asp-controller="Exam" class="nav-link"><i class="fas fa-download"></i><span>Download Admit Card</span></a>
+                            </li>
+                            <li>
+                                <a asp-action="DownloadPracticalAdmitCard" asp-controller="Exam" class="nav-link"><i class="fas fa-tools"></i><span>Download Practical Admit Card</span></a>
+                            </li>
+                            <li>
+                                <a asp-action="TheoryAdmitCard" asp-controller="Exam" class="nav-link"><i class="fas fa-book-open"></i><span>Theory Admit Card</span></a>
+                            </li>
+                            @if (isAdmin)
+                            {
+                                <li>
+                                    <a asp-action="ExamChallanRecall" asp-controller="Challan" class="nav-link"><i data-feather="repeat"></i><span>Exam Challan Recall</span></a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </aside>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+            <div class="main-content">
+                <section class="section">
+                    <div class="section-body">
+                        @RenderBody()
+                    </div>
+                </section>
+            </div>
+
+            <footer class="main-footer">
+                <div class="footer-left">
+                    <a href="#">BSEB. All rights reserved.</a>
+                </div>
+                <div class="footer-right">
+                </div>
+            </footer>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - BSEB_MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Client-side logic for highlighting active menu item
+        // The URL-based logic can be tricky with the dashboard, so let's use the activeModule from the server
+        document.addEventListener("DOMContentLoaded", function () {
+            const activeModule = '@activeModule'; // Get active module from server-side rendering
+            const menuLinks = document.querySelectorAll(".sidebar-menu a");
+            menuLinks.forEach(link => {
+                const href = link.getAttribute("href");
+                if (href && href.toLowerCase().includes(activeModule.toLowerCase())) {
+                    const liElement = link.closest("li");
+                    if (liElement) {
+                        liElement.classList.add("active");
+                    }
+                }
+            });
+        });
+    </script>
+    <script src="~/bundles/sweetalert/sweetalert.min.js"></script>
+    <script src="~/js/page/sweetalert.js"></script>
+    <script src="~/bundles/datatables/datatables.min.js"></script>
+    <script src="~/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/bundles/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/js/page/datatables.js"></script>
+    <script src="~/js/app.min.js"></script>
+    <script src="~/bundles/apexcharts/apexcharts.min.js"></script>
+    <script src="~/js/page/index.js"></script>
+    <script src="~/js/scripts.js"></script>
+    <script src="~/js/custom.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

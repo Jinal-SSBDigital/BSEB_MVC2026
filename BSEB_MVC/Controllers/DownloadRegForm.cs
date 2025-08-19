@@ -22,6 +22,7 @@ namespace BSEB_MVC.Controllers
 
         public IActionResult Index()
         {
+           
             ViewBag.FacultyList = GetFacultyList();
             return View(new List<StudentMaster>());
         }
@@ -29,7 +30,7 @@ namespace BSEB_MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(string collegeName, string studentName, int facultyId)
         {
-            int collegeId = 0;
+            string collegeId = "";
             string collegeCode = "";
 
             var sessionCollegeName = HttpContext.Session.GetString("CollegeName");
@@ -43,7 +44,8 @@ namespace BSEB_MVC.Controllers
             else
             {
                 
-                collegeId = Convert.ToInt32(sessionCollegeId);
+                collegeId = sessionCollegeId;
+                collegeId = string.IsNullOrWhiteSpace(collegeId) ? "" : collegeId;
             }
             studentName = string.IsNullOrWhiteSpace(studentName) ? "" : studentName;
             var client = _httpClientFactory.CreateClient();
@@ -64,6 +66,27 @@ namespace BSEB_MVC.Controllers
             return View(result ?? new List<StudentMaster>());
         }
 
+        [HttpPost]
+        public IActionResult DownloadPdf([FromBody] DownloadRequest request)
+        {
+            if (request == null || request.StudentIds == null || !request.StudentIds.Any())
+            {
+                return Json(new { success = false, message = "No students selected." });
+            }
+
+            // Convert IDs into comma separated string
+            var ids = string.Join(",", request.StudentIds);
+
+            // Build redirect URL with query parameters
+            var redirectUrl = Url.Action("Index", "InterRegistrationForm", new
+            {
+                studentIds = ids,
+                college = request.College,
+                faculty = request.Faculty
+            });
+
+            return Json(new { success = true, redirectUrl });
+        }
 
     }
 }

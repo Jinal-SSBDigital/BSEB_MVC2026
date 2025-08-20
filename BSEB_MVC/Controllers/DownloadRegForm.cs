@@ -28,7 +28,7 @@ namespace BSEB_MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(string collegeName, string studentName, int facultyId)
+        public async Task<IActionResult> GetStudents(string CollegeName, string FacultyId, string studentName)
         {
             string collegeId = "";
             string collegeCode = "";
@@ -39,7 +39,7 @@ namespace BSEB_MVC.Controllers
             if (sessionCollegeName == "Admin")
             {
               
-                collegeCode = collegeName;
+                collegeCode = CollegeName;
             }
             else
             {
@@ -49,29 +49,28 @@ namespace BSEB_MVC.Controllers
             }
             studentName = string.IsNullOrWhiteSpace(studentName) ? "" : studentName;
             var client = _httpClientFactory.CreateClient();
-            var url = $"https://localhost:7202/api/DwnldRegForm/GetStudentData" +$"?collegeId={collegeId}&collegeCode={collegeCode}&studentName={studentName}&facultyId={facultyId}";
+            var url = $"https://localhost:7202/api/DwnldRegForm/GetStudentData" +$"?collegeId={collegeId}&collegeCode={collegeCode}&studentName={studentName}&facultyId={FacultyId}";
 
             var response = await client.GetAsync(url);
 
             if (!response.IsSuccessStatusCode)
             {
-                ModelState.AddModelError("", $"API error: {response.StatusCode}");
-                ViewBag.FacultyList = GetFacultyList();
-                return View(new List<StudentMaster>());
+                return Json(new List<StudentMaster>());
             }
 
             var result = await response.Content.ReadFromJsonAsync<List<StudentMaster>>();
 
-            ViewBag.FacultyList = GetFacultyList();
-            return View(result ?? new List<StudentMaster>());
+            return Json(result ?? new List<StudentMaster>());
         }
-
         [HttpPost]
         public IActionResult DownloadPdf([FromBody] DownloadRequest request)
         {
+            // Now, request should not be null if the client-side data matches the model
             if (request == null || request.StudentIds == null || !request.StudentIds.Any())
             {
-                return Json(new { success = false, message = "No students selected." });
+                // Log for debugging if it still comes null unexpectedly
+                Console.WriteLine("DownloadPdf: Request or StudentIds is null/empty.");
+                return Json(new { success = false, message = "No students selected or request format is incorrect." });
             }
 
             // Convert IDs into comma separated string

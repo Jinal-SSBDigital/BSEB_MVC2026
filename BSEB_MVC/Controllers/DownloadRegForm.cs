@@ -80,7 +80,7 @@ namespace BSEB_MVC.Controllers
             var redirectUrl = Url.Action("Index", "InterRegistrationForm", new
             {
                 studentIds = ids,
-                college = request.College,
+                CollegeId = request.collegeId,
                 faculty = request.Faculty
             });
 

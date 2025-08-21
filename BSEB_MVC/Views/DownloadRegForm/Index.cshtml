@@ -14,6 +14,8 @@
             </div>
             <div class="card-body">
                 <div class="form-row">
+                    @Html.Hidden("collegeId", "", new { id = "collegeId" })
+
                     <div class="form-group col-md-6">
                         @Html.Label("collegeName", "College", new { @class = "control-label" })
                         <span class="text-danger">*</span>
@@ -91,6 +93,11 @@
 
         // Build student table
         function buildStudentTable(data) {
+
+            if(data.length > 0)
+            {
+                $("#collegeId").val(data[0].collegeId);
+            }
             let html = `
                 <table class="table table-bordered table-striped mt-3">
                     <thead>
@@ -133,13 +140,16 @@
         }
 
         $("#btnDownload").click(function () {
+            debugger
              let selected = [];
              let college = "";
              let faculty = 0; // Initialize as integer
+             let collegeId = $("#collegeId").val();
 
              $(".chkStudent:checked").each(function () {
                  selected.push(parseInt($(this).val())); // Ensure IDs are integers
-                 college = $(this).data("college");
+                // college = $(this).data("college");
+                //collegeId = $("#collegeId").val();
                  faculty = parseInt($(this).data("faculty")); // Ensure faculty is integer
              });
 
@@ -155,7 +165,7 @@
                  // Send the data as a JSON string matching the C# model
                  data: JSON.stringify({
                      StudentIds: selected,
-                     College: college,
+                     collegeId: collegeId,
                      Faculty: faculty
                  }),
                  success: function (res) {

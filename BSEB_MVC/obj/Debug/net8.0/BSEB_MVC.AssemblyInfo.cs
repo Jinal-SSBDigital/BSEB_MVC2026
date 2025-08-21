@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BSEB_MVC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7162a598938bf16731d57b957a605ac6a761cd86")]
 [assembly: System.Reflection.AssemblyProductAttribute("BSEB_MVC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BSEB_MVC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

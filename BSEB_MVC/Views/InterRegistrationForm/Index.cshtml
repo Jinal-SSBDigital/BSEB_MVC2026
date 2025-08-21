@@ -1,0 +1,106 @@
+﻿@model IEnumerable<BSEB_MVC.Models.StudentRegistrationView>
+
+@{
+    Layout = null; 
+}
+
+<div class="print-btn-container" style="text-align:center;margin-bottom:10px;">
+    <button type="button" onclick="window.print();" class="btn btn-primary">PDF</button>
+</div>
+
+@foreach (var student in Model)
+{
+    <div class="container" id="pagewrap">
+        <div class="lineheart_a page" id="page1">
+            <div class="form-header">
+                <div class="board-title">BIHAR SCHOOL EXAMINATION BOARD, PATNA</div>
+                <div class="exam-title">INTERMEDIATE EXAMINATION</div>
+            </div>
+
+            <div class="faculty-box">
+                Faculty - <span>@student.FacultyName</span>
+            </div>
+
+            <div class="hindi-line">
+                इंटरमीडिएट कक्षा में सत्र 2024-26 ...
+            </div>
+
+            <div class="session-line">
+                <u>REGISTRATION FORM - SESSION: 2024-26</u>
+            </div>
+
+            <table>
+                <tr>
+                    <td>1. OFSS CAF No.</td>
+                    <td>@student.OFSSCAFNo</td>
+                    <td rowspan="9" class="photo-cell">
+                        <img src="@Url.Content(student.StudentPhotoPath)" alt="Student Photo" /><br />
+                        <img src="@Url.Content(student.StudentSignaturePath)" alt="Student Signature" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>2. Category</td>
+                    <td>@student.CategoryName</td>
+                </tr>
+                <tr>
+                    <td>3. College/+2 School Code</td>
+                    <td>@student.CollegeCode</td>
+                </tr>
+                <tr>
+                    <td>4. College/+2 School Name</td>
+                    <td>@student.CollegeName</td>
+                </tr>
+                <tr>
+                    <td>5. District Name</td>
+                    <td>@student.DistrictName</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="page" id="page2">
+            <h3>खण्ड - 'B'</h3>
+            <p>Aadhar No: @student.AadharNumber</p>
+
+            <div>
+                <label>19. Area</label>
+                <input type="checkbox" @(student.AreaName == "Rural" ? "checked" : "") disabled /> Rural
+                <input type="checkbox" @(student.AreaName == "Urban" ? "checked" : "") disabled /> Urban
+            </div>
+
+            <p>28. Bank A/C: @student.StudentBankAccountNo</p>
+            <p>29. IFSC: @student.IFSCCode</p>
+            <p>30. Branch: @student.BankBranchName</p>
+            <p>31. Marks: @student.IdentificationMark1, @student.IdentificationMark2</p>
+        </div>
+
+        <div class="page" id="page3">
+            <h4>33. Subject details with codes</h4>
+            <div class="q33-box"><strong>Compulsory Subject Group</strong></div>
+            <div class="q33-box"><strong>Elective Subject Group</strong></div>
+            <div class="q33-box"><strong>Additional Subject Group</strong></div>
+
+            @if (student.FacultyName == "Vocational")
+            {
+                <div class="q33-box"><h4>Vocational Trade Group</h4></div>
+            }
+        </div>
+
+        <div class="page" id="page4">
+            <div class="note-box">
+                प्रमाणित किया जाता है कि ...
+            </div>
+        </div>
+    </div>
+}
+
+<style type="text/css" media="print">
+    button {
+        display: none !important;
+    }
+
+    .q33-box {
+        border: 1px solid #000;
+        padding: 10px;
+        margin: 10px 0;
+    }
+</style>

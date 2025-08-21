@@ -1,12 +1,105 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Jinal\\Git\\BSEB_MVC2026\\BSEB_MVC\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E1E04561-D08F-4233-80F3-CC6A23FDD8B6}|BSEB_MVC.csproj|c:\\jinal\\git\\bseb_mvc2026\\bseb_mvc\\views\\interregistrationform\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E1E04561-D08F-4233-80F3-CC6A23FDD8B6}|BSEB_MVC.csproj|solutionrelative:views\\interregistrationform\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1E04561-D08F-4233-80F3-CC6A23FDD8B6}|BSEB_MVC.csproj|c:\\jinal\\git\\bseb_mvc2026\\bseb_mvc\\models\\studentregistrationview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1E04561-D08F-4233-80F3-CC6A23FDD8B6}|BSEB_MVC.csproj|solutionrelative:models\\studentregistrationview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1E04561-D08F-4233-80F3-CC6A23FDD8B6}|BSEB_MVC.csproj|c:\\jinal\\git\\bseb_mvc2026\\bseb_mvc\\controllers\\interregistrationform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1E04561-D08F-4233-80F3-CC6A23FDD8B6}|BSEB_MVC.csproj|solutionrelative:controllers\\interregistrationform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1E04561-D08F-4233-80F3-CC6A23FDD8B6}|BSEB_MVC.csproj|c:\\jinal\\git\\bseb_mvc2026\\bseb_mvc\\controllers\\downloadregform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1E04561-D08F-4233-80F3-CC6A23FDD8B6}|BSEB_MVC.csproj|solutionrelative:controllers\\downloadregform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1E04561-D08F-4233-80F3-CC6A23FDD8B6}|BSEB_MVC.csproj|c:\\jinal\\git\\bseb_mvc2026\\bseb_mvc\\views\\downloadregform\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E1E04561-D08F-4233-80F3-CC6A23FDD8B6}|BSEB_MVC.csproj|solutionrelative:views\\downloadregform\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StudentRegistrationView.cs",
+              "DocumentMoniker": "C:\\Jinal\\Git\\BSEB_MVC2026\\BSEB_MVC\\Models\\StudentRegistrationView.cs",
+              "RelativeDocumentMoniker": "Models\\StudentRegistrationView.cs",
+              "ToolTip": "C:\\Jinal\\Git\\BSEB_MVC2026\\BSEB_MVC\\Models\\StudentRegistrationView.cs",
+              "RelativeToolTip": "Models\\StudentRegistrationView.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAkwCcAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T11:39:02.393Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Jinal\\Git\\BSEB_MVC2026\\BSEB_MVC\\Views\\InterRegistrationForm\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\InterRegistrationForm\\Index.cshtml",
+              "ToolTip": "C:\\Jinal\\Git\\BSEB_MVC2026\\BSEB_MVC\\Views\\InterRegistrationForm\\Index.cshtml",
+              "RelativeToolTip": "Views\\InterRegistrationForm\\Index.cshtml",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAE4AAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-21T11:34:12.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "InterRegistrationForm.cs",
+              "DocumentMoniker": "C:\\Jinal\\Git\\BSEB_MVC2026\\BSEB_MVC\\Controllers\\InterRegistrationForm.cs",
+              "RelativeDocumentMoniker": "Controllers\\InterRegistrationForm.cs",
+              "ToolTip": "C:\\Jinal\\Git\\BSEB_MVC2026\\BSEB_MVC\\Controllers\\InterRegistrationForm.cs",
+              "RelativeToolTip": "Controllers\\InterRegistrationForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-18T09:26:31.647Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Jinal\\Git\\BSEB_MVC2026\\BSEB_MVC\\Views\\DownloadRegForm\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\DownloadRegForm\\Index.cshtml",
+              "ToolTip": "C:\\Jinal\\Git\\BSEB_MVC2026\\BSEB_MVC\\Views\\DownloadRegForm\\Index.cshtml",
+              "RelativeToolTip": "Views\\DownloadRegForm\\Index.cshtml",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAowBEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-18T04:58:46.832Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DownloadRegForm.cs",
+              "DocumentMoniker": "C:\\Jinal\\Git\\BSEB_MVC2026\\BSEB_MVC\\Controllers\\DownloadRegForm.cs",
+              "RelativeDocumentMoniker": "Controllers\\DownloadRegForm.cs",
+              "ToolTip": "C:\\Jinal\\Git\\BSEB_MVC2026\\BSEB_MVC\\Controllers\\DownloadRegForm.cs",
+              "RelativeToolTip": "Controllers\\DownloadRegForm.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAQwFYAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-18T04:54:30.223Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -374,7 +374,7 @@
     <div class="print-btn-container" style="text-align: center !important;margin-bottom: 10px;">
         <button type="submit" class="btn" id="btnPrint">PDF</button>
     </div>
-}
+@* } *@
 
 
 @foreach (var student in Model)
@@ -798,8 +798,11 @@
             <div class="q33-box">
                 <h2>Vocational Trade Group (100 Marks)</h2>
                 <h3>(For students of Science, Commerce & Arts faculties)</h3>
-                <div class="instructions">
-                    </div>
+                        <div class="instructions">
+                            (i) विज्ञान, वाणिज्य एवं कला संकायों के विद्यार्थियों के लिए सत्र 2022-24 से राज्य के सभी जिलों के कुछ चिन्हित +2 विद्यालय/विद्यालयों में विभिन्न व्यावसायिक ट्रेंड के पठन-पाठन की शुरुआत की गई है, जिनकी सूची समिति के पोर्टल/वेबसाइट पर प्रदर्शित की गई है। व्यावसायिक ट्रेंड का पठन-पाठन अनिवार्य (Compulsory), ऐच्छिक (Elective) एवं अतिरिक्त (Additional) विषय संरचना के अलावा होगा।<br>
+                            (ii) उपरोक्त +2 विद्यालयों, जिनकी सूची समिति के पोर्टल/वेबसाइट पर प्रदर्शित की गई है, के वैसे विद्यार्थी, जिन्हें व्यावसायिक ट्रेंड आवंटित किया गया है, के द्वारा इस ट्रेंड समूह में से किसी एक ट्रेंड का चयन किया जाता एवं उसकी परीक्षा (सैद्धान्तिक एवं प्रायोगिक) में सम्मिलित होना अनिवार्य है। यद्यपि कि, इसके प्राप्तांक की गणना वार्षिक निर्णय हेतु नहीं की जाएगी तथा इसे किसी अन्य विषय के प्राप्तांक से परिवर्तित (Interchange/Swap) नहीं किया जाएगा।<br>
+                            (iii) राज्य/जिला के अन्य +2 विद्यालय, जो व्यावसायिक ट्रेंड का पठन-पाठन हेतु चिन्हित नहीं हैं, के विद्यार्थियों द्वारा इस ट्रेंड समूह में से किसी ट्रेंड का चयन नहीं किया जाएगा।
+                        </div>
                 <table class="voc-table">
                             @foreach (var subject in student.VocationalSubjects)
                     {
@@ -814,15 +817,36 @@
                 </table>
             </div>
         }
-        
-        <div class="note-box">
-            </div>
-        <div class="signature-row">
-            </div>
-        <div class="note-box">
-            </div>
-        <div class="principal-section">
-            </div>
+
+                <div class="note-box">
+                    प्रमाणित किया जाता है कि इस आवेदन पत्र में दी गई सूचना पूरी तरह से सही एवं शुद्ध हैं और इसमें कहीं पर भी किसी प्रकार के संशोधन की आवश्यकता नहीं है। जो भी सुधार एवं संशोधन थे, सब करा लिए गए हैं।
+                </div>
+
+                <div class="signature-row">
+                    <div>
+                        <div class="signature-box"></div>
+                        <div class="signature-label">Signature of Parent/Guardian</div>
+                    </div>
+                    <div>
+                        <div class="signature-box"></div>
+                        <div class="signature-label">Student's Signature in Hindi</div>
+                    </div>
+                    <div>
+                        <div class="signature-box"></div>
+                        <div class="signature-label">Student's Signature in English</div>
+                    </div>
+                </div>
+
+                <div class="note-box">
+                    प्रमाणित किया जाता है कि ऊपर दिए गए सभी विवरण का मिलान महाविद्यालय/+2 विद्यालय के सभी अभिलेखों से पूर्णरूपेण कर लिया गया है। तत्संबंध में उक्त विद्यार्थी का सूचीकरण/अनुमति आवेदन पत्र स्वीकार किया जाए।
+                </div>
+
+                <div class="principal-section">
+                    <div>
+                        <div class="principal-box"></div>
+                        <div class="signature-label">Signature &amp; seal of Principal</div>
+                    </div>
+                </div>
     </div>
 </div>
 
@@ -857,3 +881,4 @@
             padding: 10px;
         }*/
 </style>
+}

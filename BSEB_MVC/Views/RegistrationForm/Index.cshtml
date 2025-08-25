@@ -1,0 +1,63 @@
+﻿@model List<BSEB_MVC.Models.StudentMaster>
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Registration Form";
+    var FacultyList = ViewBag.FacultyList as List<SelectListItem>;
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>Download Registration Form</h4>
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    @Html.Hidden("collegeId", "", new { id = "collegeId" })
+
+                    <div class="form-group col-md-6">
+                        @Html.Label("collegeName", "College", new { @class = "control-label" })
+                        <span class="text-danger">*</span>
+                        @Html.TextBox("collegeName", null, new { @class = "form-control", placeholder = "Enter College Code", required = "required" })
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        @Html.Label("facultyId", "Faculty Name", new { @class = "control-label" })
+                        <span class="text-danger">*</span>
+                        @Html.DropDownList("facultyId", FacultyList, "-- Select Faculty --", new { @class = "form-control", required = "required" })
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Academic Session</label>
+                        <asp:DropDownList runat="server" class="form-control" ID="dr_session">
+                            <asp:ListItem Selected>2024-2026</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.Label("studentName", "Student Name", new { @class = "control-label" })
+                        @Html.TextBox("studentName", null, new { @class = "form-control", placeholder = "Enter Student Name" })
+                    </div>
+                </div>
+                <div class="form-group mt-3 text-center">
+                
+                        <button type="submit" id="btnViewRecord" class="btn btn-primary" >VIEW RECORD</button>
+                </div>
+    
+                <button type="button" id="btnDownload" class="btn btn-success" style="display: none;">Download PDF</button>
+                <hr />
+                <div id="studentTableContainer"></div>
+           
+</div>
+</<div>
+
+</div></div>
+</div>
+</div>
+@section Scripts {
+    <script>
+        $("#btnViewRecord").click(function () {
+
+        });
+    </script>
+}

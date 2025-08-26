@@ -2,6 +2,9 @@
 {
     public class StudentRegistrationView
     {
+      
+
+        public List<SubjectPaperResult> Subjects { get; set; } = new List<SubjectPaperResult>();
         public string? StudentName { get; set; } = "";
         public string? FatherName { get; set; } = "";
         public string? MotherName { get; set; } = "";
@@ -38,5 +41,11 @@
         public string? MaritalStatus { get; set; }
         public string? SubDivisionName { get; set; }
         public int? Fk_NationalityId { get; set; }
+
+        // Make sure these lists are properly populated in the deserialized object
+        public List<SubjectGroup> CompulsorySubjects { get; set; } = new();
+        public List<SubjectPaperResult> ElectiveSubjects { get; set; } = new();
+        public List<SubjectPaperResult> AdditionalSubjects { get; set; } = new();
+        public List<SubjectPaperResult> VocationalSubjects { get; set; } = new();
     }
 }

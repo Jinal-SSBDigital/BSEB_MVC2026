@@ -10,13 +10,13 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4>Download Registration Form</h4>
+                <h4> Registration Form</h4>
             </div>
             <div class="card-body">
                 <div class="form-row">
                     @Html.Hidden("collegeId", "", new { id = "collegeId" })
 
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-6" id="txtCollege">
                         @Html.Label("collegeName", "College", new { @class = "control-label" })
                         <span class="text-danger">*</span>
                         @Html.TextBox("collegeName", null, new { @class = "form-control", placeholder = "Enter College Code", required = "required" })

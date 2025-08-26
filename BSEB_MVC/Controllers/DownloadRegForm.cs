@@ -22,7 +22,8 @@ namespace BSEB_MVC.Controllers
 
         public IActionResult Index()
         {
-           
+            var sessionCollegeName = HttpContext.Session.GetString("CollegeName");
+            var sessionCollegeId = HttpContext.Session.GetString("CollegeId");
             ViewBag.FacultyList = GetFacultyList();
             return View(new List<StudentMaster>());
         }

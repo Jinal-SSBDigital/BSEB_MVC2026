@@ -7,6 +7,11 @@ namespace BSEB_MVC.Controllers
         public IActionResult Index()
         {
             return View();
+
+        }
+        public IActionResult Details()
+        {
+            return View();
         }
     }
 }

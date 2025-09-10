@@ -1,0 +1,186 @@
+﻿@model List<BSEB_MVC.Models.StudentMaster>
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Download Registration Form";
+    var FacultyList = ViewBag.FacultyList as List<SelectListItem>;
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>Download Registration Form</h4>
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    @Html.Hidden("collegeId", "", new { id = "collegeId" })
+
+                    <div class="form-group col-md-6">
+                        @Html.Label("collegeName", "College", new { @class = "control-label" })
+                        <span class="text-danger">*</span>
+                        @Html.TextBox("collegeName", null, new { @class = "form-control", placeholder = "Enter College Code", required = "required" })
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        @Html.Label("facultyId", "Faculty Name", new { @class = "control-label" })
+                        <span class="text-danger">*</span>
+                        @Html.DropDownList("facultyId", FacultyList, "-- Select Faculty --", new { @class = "form-control", required = "required" })
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Academic Session</label>
+                        <asp:DropDownList runat="server" class="form-control" ID="dr_session">
+                            <asp:ListItem Selected>2024-2026</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.Label("studentName", "Student Name", new { @class = "control-label" })
+                        @Html.TextBox("studentName", null, new { @class = "form-control", placeholder = "Enter Student Name" })
+                    </div>
+                </div>
+
+                <div class="form-group mt-3 text-center">
+                    @*   onclick="ViewRecord()" *@
+                    <button type="submit" id="btnViewRecord" class="btn btn-primary">VIEW RECORD</button>
+                </div>
+
+                <button type="button" id="btnDownload" class="btn btn-success" style="display: none;">Download PDF</button>
+                <hr />
+                <div id="studentTableContainer"></div>
+
+            </div>
+            </<div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        // Load students
+        $("#btnViewRecord").click(function () {
+            let collegeName = $("#collegeName").val();
+            let facultyId = $("#facultyId").val();
+            let studentName = $("#studentName").val();
+
+            if (!collegeName || !facultyId) {
+                alert("Please fill required fields.");
+                return;
+            }
+
+            $.ajax({
+                url: '@Url.Action("GetStudents", "DownloadRegForm")',
+                type: "POST",
+                data: {
+                    CollegeName: collegeName,
+                    FacultyId: facultyId,
+                    studentName: studentName
+                },
+                success: function (res) {
+                    if (res && res.length > 0) {
+                        buildStudentTable(res);
+                        $("#btnDownload").show();
+                    } else {
+                        $("#studentTableContainer").html('<div class="alert alert-danger mt-3">No student records found matching your criteria.</div>');
+                        $("#btnDownload").hide();
+                    }
+                },
+                error: function () {
+                    alert("Error while loading records!");
+                }
+            });
+        });
+
+        // Build student table
+        function buildStudentTable(data) {
+
+            if(data.length > 0)
+            {
+                $("#collegeId").val(data[0].collegeId);
+            }
+            let html = `
+                <table class="table table-bordered table-striped mt-3">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="selectAll" /></th>
+                            <th>College</th>
+                            <th>Student Name</th>
+                            <th>Father Name</th>
+                            <th>Mother Name</th>
+                            <th>DOB</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            data.forEach(s => {
+                let dob = s.dob ? new Date(s.dob).toLocaleDateString("en-GB") : "";
+                html += `
+                    <tr>
+                        <td>
+                            <input type="checkbox" class="chkStudent" value="${s.studentID}"
+                                   data-college="${s.college}" data-faculty="${s.facultyId}" />
+                        </td>
+                        <td>${s.college}</td>
+                        <td>${s.studentName}</td>
+                        <td>${s.fatherName}</td>
+                        <td>${s.motherName}</td>
+                        <td>${dob}</td>
+                    </tr>
+                `;
+            });
+
+            html += "</tbody></table>";
+            $("#studentTableContainer").html(html);
+
+            // header checkbox event
+            $("#selectAll").on("change", function () {
+                $(".chkStudent").prop("checked", this.checked);
+            });
+        }
+
+        $("#btnDownload").click(function () {
+            debugger
+             let selected = [];
+             let college = "";
+             let faculty = 0; // Initialize as integer
+             let collegeId = $("#collegeId").val();
+
+             $(".chkStudent:checked").each(function () {
+                 selected.push(parseInt($(this).val())); // Ensure IDs are integers
+                // college = $(this).data("college");
+                //collegeId = $("#collegeId").val();
+                 faculty = parseInt($(this).data("faculty")); // Ensure faculty is integer
+             });
+
+             if (selected.length === 0) {
+                 alert("Please select at least one record.");
+                 return;
+             }
+
+             $.ajax({
+                 url: '@Url.Action("DownloadPdf", "DownloadRegForm")',
+                 type: "POST",
+                 contentType: "application/json",
+                 // Send the data as a JSON string matching the C# model
+                 data: JSON.stringify({
+                     StudentIds: selected,
+                     collegeId: collegeId,
+                     Faculty: faculty
+                 }),
+                 success: function (res) {
+                     if (res.success) {
+                         window.location.href = res.redirectUrl;
+                     } else {
+                         alert("Error: " + res.message);
+                     }
+                 },
+                 error: function (xhr, status, error) {
+                     // console.error("AJAX Error:", xhr.responseText); // Log the full error response
+                     alert("Something went wrong during PDF download: " + error);
+                 }
+             });
+         });
+    </script>
+}
+

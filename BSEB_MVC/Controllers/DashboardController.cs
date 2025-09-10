@@ -20,8 +20,8 @@ namespace BSEB_MVC.Controllers
 
             
             ViewBag.IsAdmin = (HttpContext.Session.GetString("CollegeName")?.ToLower() == "Admin");
-
-           
+            //new
+            ViewBag.Students = (HttpContext.Session.GetString("STudensts")?.ToLower() == "");
             ViewBag.ActiveModule = HttpContext.Session.GetString("ActiveModule");
 
             return View();

@@ -88,5 +88,41 @@ namespace BSEB_MVC.Controllers
             return Json(new { success = true, redirectUrl });
         }
 
+        // new
+        [HttpPost]
+        public async Task<IActionResult> GetStudentsDetails(string CollegeName, string FacultyId, string studentName)
+        {
+            string collegeId = "";
+            string collegeCode = "";
+
+            var sessionCollegeName = HttpContext.Session.GetString("CollegeName");
+            var sessionCollegeId = HttpContext.Session.GetString("CollegeId");
+
+            if (sessionCollegeName == "Admin")
+            {
+
+                collegeCode = CollegeName;
+            }
+            else
+            {
+
+                collegeId = sessionCollegeId;
+                collegeId = string.IsNullOrWhiteSpace(collegeId) ? "" : collegeId;
+            }
+            studentName = string.IsNullOrWhiteSpace(studentName) ? "" : studentName;
+            var client = _httpClientFactory.CreateClient();
+            var url = $"https://localhost:7202/api/DwnldRegForm/GetStudentData" + $"?collegeId={collegeId}&collegeCode={collegeCode}&studentName={studentName}&facultyId={FacultyId}";
+
+            var response = await client.GetAsync(url);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return Json(new List<StudentMaster>());
+            }
+
+            var result = await response.Content.ReadFromJsonAsync<List<StudentMaster>>();
+
+            return Json(result ?? new List<StudentMaster>());
+        }
     }
 }

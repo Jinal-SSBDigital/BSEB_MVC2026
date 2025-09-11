@@ -13,6 +13,8 @@ namespace BSEB_MVC.Data
         public DbSet<FacultyMaster> Faculty_Mst { get; set; }
         public DbSet<StudentMaster> Student_Mst { get; set; }
         public DbSet<CollegeMaster> CollegeMaster { get; set; }
+        public DbSet<CollegeMaster> DeviceMaster { get; set; }
+        public DbSet<CollegeMaster>  Master { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // ✅ Mark StudentMaster as keyless for SP result mapping

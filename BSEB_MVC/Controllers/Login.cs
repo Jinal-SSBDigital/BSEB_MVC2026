@@ -13,6 +13,9 @@ namespace BSEB_MVC.Controllers
         public Login(IHttpClientFactory httpClientFactory, AppDbContext appDbContext)
         {
             _httpClientFactory = httpClientFactory;
+
+
+
             dbContext = appDbContext;
         }
 

@@ -14,6 +14,8 @@ namespace BSEB_MVC.Controllers
         {
             _httpClientFactory = httpClientFactory;
             dbContext = appDbContext;
+
+
         }
         private List<SelectListItem> GetFacultyList()
         {

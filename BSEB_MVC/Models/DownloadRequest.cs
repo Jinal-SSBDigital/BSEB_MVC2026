@@ -9,5 +9,12 @@
         public string collegeId { get; set; }
         // Changed to int to match the data-faculty attribute and form input
         public int Faculty { get; set; }
+
+        public string SubCategoryName { get; set; }
+        public string status { get; set; }
+
+        public DateTime createddate { get; set; }
+        public int CatId { get; set; }
+
     }
 }

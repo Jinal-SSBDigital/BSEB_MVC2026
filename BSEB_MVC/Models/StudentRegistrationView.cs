@@ -47,5 +47,12 @@
         public List<SubjectPaperResult> ElectiveSubjects { get; set; } = new();
         public List<SubjectPaperResult> AdditionalSubjects { get; set; } = new();
         public List<SubjectPaperResult> VocationalSubjects { get; set; } = new();
+
+
+        public string SubCategoryName { get; set; }
+        public string status { get; set; }
+
+        public DateTime createddate { get; set; }
+        public int CatId { get; set; }
     }
 }

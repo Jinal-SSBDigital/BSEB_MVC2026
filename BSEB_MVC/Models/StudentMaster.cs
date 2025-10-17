@@ -12,5 +12,12 @@
         public bool? FormDownloaded { get; set; }
         public int? FacultyId { get; set; }
         public int? CollegeId { get; set; }
+
+        public string SubCategoryName { get; set; }
+        public string status { get; set; }
+
+        public DateTime createddate { get; set; }
+        public int CatId { get; set; }
+
     }
 }

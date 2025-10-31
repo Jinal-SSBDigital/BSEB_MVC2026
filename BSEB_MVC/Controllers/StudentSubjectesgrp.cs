@@ -12,5 +12,9 @@ namespace BSEB_MVC.Controllers
         {
             return View();
         }
+        public IActionResult PreviousSubject()
+        {
+            return View();
+        }
     }
 }

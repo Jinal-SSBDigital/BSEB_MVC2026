@@ -27,6 +27,16 @@
             public bool isactive { get; set; }
             public bool isactivelocked { get; set; }
     }
+    public class PreviousSubject
+    {
+            public int subjectid { get; set; }
+
+            public string subjectname { get; set; }
+            public string subjectcode { get; set; }
+
+            public bool isactive { get; set; }
+            public bool isactivelocked { get; set; }
+    }
     public class Compulsarygrp2
     {
                 public int subjectid { get; set; }

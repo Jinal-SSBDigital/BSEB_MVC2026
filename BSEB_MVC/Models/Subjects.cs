@@ -47,16 +47,16 @@
                 public bool isactive { get; set; }
                 public bool isactivelocked { get; set; }
     }
-    public class Eleactivegrp
-    {
-                public int subjectid { get; set; }
+    //public class Eleactivegrp
+    //{
+    //            public int subjectid { get; set; }
 
-                public string subjectname { get; set; }
-                public string subjectcode { get; set; }
+    //            public string subjectname { get; set; }
+    //            public string subjectcode { get; set; }
 
-                public bool isactive { get; set; }
-                public bool isactivelocked { get; set; }
-    }
+    //            public bool isactive { get; set; }
+    //            public bool isactivelocked { get; set; }
+    //}
     public class Additionalgrp
     {
                 public int subjectid { get; set; }

@@ -2,7 +2,7 @@
 {
     public class CollegeMaster
     {
-        public int Id { get; set; }
+        public int Pk_CollegeId { get; set; }
         public string? UserName { get; set; }
         public string? CollegeName { get; set; }
         public string? CollegeCode { get; set; }

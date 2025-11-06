@@ -19,5 +19,8 @@
         public DateTime createddate { get; set; }
         public int CatId { get; set; }
 
+        //public DateTime createddate { get; set; }
+        //public int CatId { get; set; }
+
     }
 }

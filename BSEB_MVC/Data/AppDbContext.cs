@@ -13,6 +13,10 @@ namespace BSEB_MVC.Data
         public DbSet<StudentMaster> Student_Mst { get; set; }
         public DbSet<CollegeMaster> CollegeMaster { get; set; }
         public DbSet<Student_PayMst> Student_PayMst { get; set; }
+
+        public DbSet<Student_mst> Student_mst { get; set; }
+        public DbSet<ExamDownloadStudentData> ExamDownloadStudentData { get; set; }
+
         //public DbSet<CollegeMaster> CollegeMaster { get; set; }
         //public DbSet<Student_PayMst> Student_PayMst { get; set; }
 
@@ -23,6 +27,7 @@ namespace BSEB_MVC.Data
             modelBuilder.Entity<StudentMaster>().HasNoKey();
             modelBuilder.Entity<CollegeMaster>().HasNoKey();
             modelBuilder.Entity<Student_PayMst>().HasNoKey();
+            modelBuilder.Entity<ExamDownloadStudentData>().HasNoKey();
         }
     }
 }

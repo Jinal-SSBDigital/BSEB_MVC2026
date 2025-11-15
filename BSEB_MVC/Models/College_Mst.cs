@@ -12,6 +12,6 @@ namespace BSEB_MVC.Models
         public string? DistrictName { get; set; }
         public string? DistrictCode { get; set; }
         public string? PrincipalMobileNo { get; set; }
-        public string? EmailId { get; set; }
+        public string? EmailId { get; set; } = string.Empty;
     }
 }

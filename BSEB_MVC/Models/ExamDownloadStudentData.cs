@@ -9,5 +9,7 @@
         public string? Faculty { get; set; }
         public string? ExamTypeName { get; set; }
         public string? RegistrationNo { get; set; }
+        public string? ExamTypeName1 { get; set; }
+        public string? RegistrationNo1 { get; set; }
     }
 }

@@ -9,7 +9,7 @@
 
         public string? CollegeCode { get; set; }
 
-        //[Required(ErrorMessage = "Please select Faculty.")]
+     
         public int? SelectedFacultyId { get; set; }
         public int? SelectedCollegeId { get; set; }
         public int? SelectedExamTypeId { get; set; }

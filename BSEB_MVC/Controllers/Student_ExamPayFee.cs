@@ -29,18 +29,18 @@ namespace BSEB_MVC.Controllers
         {
             try
             {
-                var CollegeId = new SqlParameter("@CollegeId", string.IsNullOrEmpty(CollegeCode) ? (object)DBNull.Value : (object)CollegeCode);
-                var StudentName = new SqlParameter("@StudentName", "");
-                var FacultyId = new SqlParameter("@FacultyId", SelectedFacultyId);
-                var ExamId = new SqlParameter("@ExamId", SelectedExamTypeId);
-                var pCategoryName = new SqlParameter("@CategoryName", "");
-                var pSubCategory = new SqlParameter("@SubCategory", "makepayment");
+                //var CollegeId = new SqlParameter("@CollegeId", string.IsNullOrEmpty(CollegeCode) ? (object)DBNull.Value : (object)CollegeCode);
+                //var StudentName = new SqlParameter("@StudentName", "");
+                //var FacultyId = new SqlParameter("@FacultyId", SelectedFacultyId);
+                //var ExamId = new SqlParameter("@ExamId", SelectedExamTypeId);
+                //var pCategoryName = new SqlParameter("@CategoryName", "");
+                //var pSubCategory = new SqlParameter("@SubCategory", "makepayment");
 
-                var sql = "EXEC sp_GetExamDwnldStudentData @CollegeId, @StudentName, @FacultyId, @ExamId, @CategoryName, @SubCategory";
+                //var sql = "EXEC sp_GetExamDwnldStudentData @CollegeId, @StudentName, @FacultyId, @ExamId, @CategoryName, @SubCategory";
 
-                var list = await _context.ExamDownloadStudentData.FromSqlRaw(sql, CollegeId, StudentName, FacultyId, ExamId, pCategoryName, pSubCategory).ToListAsync();
+                //var list = await _context.ExamDownloadStudentData.FromSqlRaw(sql, CollegeId, StudentName, FacultyId, ExamId, pCategoryName, pSubCategory).ToListAsync();
 
-                return Json(new { success = "true", data = list });
+                return Json(new { success = "true" });
             }
             catch (Exception ex)
             {

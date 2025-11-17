@@ -29,7 +29,7 @@ namespace BSEB_MVC.Controllers
         {
             try
             {
-                //var CollegeId = new SqlParameter("@CollegeId", string.IsNullOrEmpty(CollegeCode) ? (object)DBNull.Value : (object)CollegeCode);
+                var CollegeId = new SqlParameter("@CollegeId", string.IsNullOrEmpty(CollegeCode) ? (object)DBNull.Value : (object)CollegeCode);
                 //var StudentName = new SqlParameter("@StudentName", "");
                 //var FacultyId = new SqlParameter("@FacultyId", SelectedFacultyId);
                 //var ExamId = new SqlParameter("@ExamId", SelectedExamTypeId);

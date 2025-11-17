@@ -47,7 +47,7 @@ namespace BSEB_MVC.Models
         public bool? IsExamFormSubmit { get; set; }
         public bool? RegisterFormDownloaded { get; set; }
 
-        public int? FK_AreaId { get; set; }
+        //public int? FK_AreaId { get; set; }
         public DateTime? DOB { get; set; }
 
         public string? SubDivisionName { get; set; }
